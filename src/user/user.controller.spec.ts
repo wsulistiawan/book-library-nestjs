@@ -12,7 +12,17 @@ describe('UserController', () => {
     controller = module.get<UserController>(UserController);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  it('should be response queries', () => {
+    const queries = {};
+    const response = controller.getUsers(queries);
+    expect(response).toBe(
+      `GET users with search parameters ${JSON.stringify(queries)}`,
+    );
+  });
+
+  it('should be response param', () => {
+    const param = 'A1';
+    const response = controller.getUser(param);
+    expect(response).toBe(`GET user with id ${param}`);
   });
 });
